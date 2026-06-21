@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Forecast</title>
+  <!----------------Link Tailwind & CSS file--------------->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="text-black">
+
+        <div class="container mx-auto px-4 py-8">
+
+        <!------------------Header---------------->
+        <div class="text-center mb-8">
+            <h1 class="text-5xl font-bold">
+                Weather Dashboard
+            </h1>
+
+            <p class="text-black-300 mt-2">
+                Real-Time Forecast
+            </p>
+        </div>
+
+        <!----------------Search-------------------------->
+        <div class="glass max-w-3xl mx-auto p-5 rounded-2xl mb-8">
+
+            <div class="flex flex-col md:flex-row gap-3">
+
+                <input
+                    type="text"
+                    id="cityInput"
+                    placeholder="Enter city name..."
+                    class="flex-1 px-4 py-3 rounded-xl bg-white/10 border border-white/20 outline-none">
+                
+
+                <button
+                    id="searchBtn"
+                    class="mt-6 bg-blue-500 hover:bg-blue-600 px-6 py-3 rounded-xl"> Search </button>
+                 <div id="historyWrapper" class="mt-4 hidden">
+
+    <label class="block mb-2 text-sm text-slate-300"> </label>
+
+    <select
+        id="historyDropdown"
+        class="w-full px-4 py-3 rounded-xl bg-black/10 border border-blue/20 outline-none">
+        <option value="">
+            Select a city
+        </option>
+    </select>
+
+            </div>
+                <button
+                    id="locationBtn"
+                    class="mt-6 bg-blue-500 hover:bg-green-600 px-4 py-3 rounded-xl">
+                    Current Location </button>
+                </div>
+               </div>
+
+        <!---------------Loader--------------->
+        <div id="loader" class="hidden flex justify-center mb-8">
+            <div class="loader"></div>
+        </div>
+
+        <!-----------------Error--------------------->
+        <!-- Error Popup -->
+        <div id="errorOverlay" class="hidden fixed inset-0 z-50 bg-black/50">
+            <div class="min-h-screen flex items-center justify-center p-4">
+                <div
+                    id="error"
+                    class="max-w-xl w-full glass p-5 rounded-2xl border border-red-400/30"
+                    role="dialog"
+                    aria-modal="true"
+                    aria-labelledby="errorTitle"
+                    aria-describedby="errorMessage"
+                >
+                    <div class="flex items-start justify-between gap-4">
+                        <div>
+                            <h3 id="errorTitle" class="text-lg font-bold text-red-200">Something went wrong</h3>
+                            <p id="errorMessage" class="mt-2 text-slate-200 leading-relaxed"></p>
+                        </div>
+                        <button
+                            id="errorCloseBtn"
+                            class="shrink-0 bg-white/10 hover:bg-white/15 border border-white/20 px-3 py-1.5 rounded-xl text-slate-100"
+                            type="button"
+                            aria-label="Close error"
+                        >
+                            Close
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--------------------Current Weather-------------------->
+        <div
+            id="weatherCard"
+            class="hidden glass max-w-5xl mx-auto p-6 rounded-3xl mb-8">
+
+            <div class="grid md:grid-cols-2 gap-8">
+          <div>
+
+                     <h2
+                        id="cityName"
+                        class="text-4xl font-bold"
+                    ></h2>
+
+                    <p
+                        id="weatherDesc"
+                        class="text-xl text-slate-300"
+                    ></p>
+
+                    <div class="flex items-center gap-4 mt-5">
+
+                        <img
+                            id="weatherIcon"
+                            src=""
+                            alt=""
+                            class="w-24"
+                        >
+
+                        <h1
+                            id="temperature"
+                            class="text-6xl font-bold"
+                        ></h1>
+
+                    </div>
+
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+
+                    <div class="glass p-4 rounded-xl">
+                        <p>Humidity</p>
+                        <h3 id="humidity"></h3>
+                    </div>
+
+                    <div class="glass p-4 rounded-xl">
+                        <p>Wind</p>
+                        <h3 id="wind"></h3>
+                    </div>
+
+                    <div class="glass p-4 rounded-xl">
+                        <p>Feels Like</p>
+                        <h3 id="feelsLike"></h3>
+                    </div>
+
+                    <div class="glass p-4 rounded-xl">
+                        <p>Pressure</p>
+                        <h3 id="pressure"></h3>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!------------------Forecast------------------>
+        <div
+            id="forecastContainer"
+            class="grid sm:grid-cols-2 lg:grid-cols-5 gap-4"
+        >
+        </div>
+
+    </div>
+
+  <!----------Link javaScript---------------->
+    <script src="app.js"></script>
+</body>
+<div id="rain-container"></div>
+</html>
