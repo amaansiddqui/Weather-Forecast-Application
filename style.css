@@ -1,0 +1,187 @@
+body {
+    min-height: 100vh;
+    --sky-1:#0f172a;
+    --sky-2:#1e293b;
+    --sky-3:#334155;
+    background: linear-gradient(135deg,var(--sky-1),var(--sky-2),var(--sky-3));
+}
+
+
+.glass {
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+.loader {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: 4px solid rgba(255,255,255,.3);
+    border-top: 4px solid white;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    100%{
+        transform: rotate(360deg);
+    }
+}
+
+#weatherCard,
+#forecastContainer {
+    transition: all 0.4s ease;
+}
+
+button {
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: translateY(-2px);
+}
+
+/* Error overlay show animation */
+#errorOverlay {
+    animation: fadeIn 0.15s ease-in;
+}
+
+/* Background transition while fetching */
+.bg-transition {
+    transition: background 0.35s ease;
+}
+
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+
+#forecastContainer .glass {
+    text-align: center;
+}
+
+
+/* Live animated “video” background */
+
+#video-bg{
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+}
+
+#video-bg::before,
+#video-bg::after{
+    content: "";
+    position: absolute;
+    inset: 0;
+}
+
+/* Base gradient */
+#video-bg::before{
+    background: linear-gradient(135deg,#0f172a,#1e293b,#334155);
+    opacity: 1;
+}
+
+/* Motion layer */
+#video-bg::after{
+    background:
+        radial-gradient(circle at 20% 20%, rgba(255,255,255,0.18), transparent 40%),
+        radial-gradient(circle at 80% 30%, rgba(255,255,255,0.12), transparent 45%),
+        radial-gradient(circle at 50% 70%, rgba(255,255,255,0.10), transparent 45%);
+    filter: blur(0.5px);
+    opacity: 0.9;
+}
+
+/* Ensure UI sits above background */
+.container, #weatherCard, #forecastContainer, #loader, #errorOverlay{
+    position: relative;
+    z-index: 5;
+}
+
+/* Live background themes */
+
+body.weather-default{
+    --sky-1:#0f172a;
+    --sky-2:#1e293b;
+    --sky-3:#334155;
+}
+
+body.weather-clear{
+    --sky-1:#f59e0b;
+    --sky-2:#fbbf24;
+    --sky-3:#fde68a;
+}
+
+body.weather-clouds{
+    --sky-1:#475569;
+    --sky-2:#64748b;
+    --sky-3:#94a3b8;
+}
+
+body.weather-rain{
+    --sky-1:#0b1220;
+    --sky-2:#15223a;
+    --sky-3:#1f2c4a;
+}
+
+body.weather-snow{
+    --sky-1:#cbd5e1;
+    --sky-2:#e2e8f0;
+    --sky-3:#f8fafc;
+}
+
+body.weather-thunderstorm{
+    --sky-1:#020617;
+    --sky-2:#1e1b4b;
+    --sky-3:#312e81;
+}
+
+body.weather-mist{
+    --sky-1:#94a3b8;
+    --sky-2:#cbd5e1;
+    --sky-3:#e2e8f0;
+}
+
+#video-bg::before{
+    background: linear-gradient(135deg,var(--sky-1),var(--sky-2),var(--sky-3));
+}
+
+/* Default (static) */
+
+body.weather-default{
+    background: linear-gradient(135deg,var(--sky-1),var(--sky-2),var(--sky-3));
+}
+
+
+#rain-container {
+    position: relative;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 10;
+}
+
+.raindrop {
+    position: absolute;
+    top: -50px;
+    width: 2px;
+    height: 25px;
+    background: rgba(255,255,255,0.7);
+    border-radius: 10px;
+    animation: rainfall linear infinite;
+}
+
+@keyframes rainfall {
+
+    from {
+        transform: translateY(-20px, -100px);
+    }
+
+    to {
+        transform: translateY(40px, 110vh);
+    }
+
+}
